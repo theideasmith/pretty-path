@@ -41,7 +41,7 @@ describe('Pretty-path', function() {
       //This just tests that a passed options doesn't cause any failures
       var pped = ppath(path, options)
 
-      console.log("     \'" + path + "\' ===> \'" + pped + "\', should: \'" + shouldEql + '\'')
+      console.log("     \'" + path + "\' ===> \'" + pped)// + "\', should: \'" + shouldEql + '\'')
 
       pped.should.equal(shouldEql)
 
