@@ -15,5 +15,13 @@
   "devDependencies": {
     "mocha": "^2.2.5",
     "should": "^7.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theideasmith/pretty-path.git"
+  },
+  "bugs": {
+    "url": "https://github.com/theideasmith/pretty-path/issues"
+  },
+  "homepage": "https://github.com/theideasmith/pretty-path#readme"
 }

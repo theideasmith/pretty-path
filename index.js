@@ -61,7 +61,7 @@ function cleanPath(path){
 }
 
 function formatPath(path, options){
-  path = path || '.'
+  path = path || '~'
   options = fsDefaults(options)
 
   path = unAlias(path, options.aliases)
