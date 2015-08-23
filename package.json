@@ -1,0 +1,19 @@
+{
+  "name": "pretty-path",
+  "version": "1.0.0",
+  "description": "Prettify paths",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "keywords": [
+    "pretty",
+    "path"
+  ],
+  "author": "Akiva Lipshitz <aclscientist@gmail.com> (http://www.github.com/theideasmith)",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^7.0.4"
+  }
+}
