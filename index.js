@@ -73,6 +73,11 @@ function formatPath(path){
   //and the path does not contain a './' as in x/y/z
   //not ./x/y/z,
   //==> Then add the './'
+
+  //Note: it doesn't interfere with a path beginning with /,
+  //because the / is removed when path becomes
+  //an array. Think about it and the reason will
+  //become clear
   else if (path[0] !== options.current_dir )
     path.unshift(options.current_dir)
 
