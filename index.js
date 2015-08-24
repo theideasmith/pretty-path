@@ -60,9 +60,9 @@ function cleanPath(path){
   return path
 }
 
-function formatPath(path, options){
+function formatPath(path){
   path = path || '~'
-  options = fsDefaults(options)
+  options = fsDefaults()
 
   path = unAlias(path, options.aliases)
 
@@ -87,11 +87,13 @@ function formatPath(path, options){
   return cleanPath(dirty)
 }
 
-function isRoot(string, options){
-  options = fsDefaults(options)
-  return string[0] === options.root
+function isRoot( string ){
 
+  var arr = pathToArray(string)
+  return arr[0] === options.root
 }
+
+
 
 function pathToArray(_string, options){
 

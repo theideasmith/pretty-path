@@ -79,4 +79,13 @@ describe('Pretty-path', function() {
 
     })
   })
+
+  it("should format null and undefined as root ", function(){
+    var a = null, b = undefined
+    var root = '/'
+
+    ppath(a).should.equal(root)
+    ppath(b).should.equal(root)
+
+  })
 })
