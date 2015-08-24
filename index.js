@@ -73,8 +73,7 @@ function formatPath(path){
   //and the path does not contain a './' as in x/y/z
   //not ./x/y/z,
   //==> Then add the './'
-  else if ((path[0] !== options.current_dir)
-            && (path[0]!== options.super_dir))
+  else if (path[0] !== options.current_dir )
     path.unshift(options.current_dir)
 
 

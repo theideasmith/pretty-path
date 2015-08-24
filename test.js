@@ -40,15 +40,15 @@ describe('Pretty-path', function() {
     //Mangled by ./././
     '././././x/y/z': './x/y/z',
     //Resolving ..
-    '.././././././x/y/z': '../x/y/z',
+    '.././././././x/y/z': './../x/y/z',
     //Checking super directory
     //resolves correctly
-    '.././x/y/z': '.././x/y/z',
+    '.././x/y/z': './.././x/y/z',
     //Checking that current directory
     //resolve correctly
     '.': '.',
     //More super directory
-    '..': '..',
+    '..': './..',
     //What happens when ....
     //Results as expected
     '.....':'./.....',
