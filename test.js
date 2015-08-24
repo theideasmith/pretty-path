@@ -4,6 +4,15 @@ var should = require("should")
 var mocha = require("mocha")
 var ppath = require('./index')
 
+function testFailure(func){
+  if (!func) throw new Error("No function supplied")
+  try{
+    func()
+  } catch(err){
+    return true
+  }
+  return false
+}
 
 describe('Pretty-path', function() {
 
@@ -69,6 +78,5 @@ describe('Pretty-path', function() {
       pped.should.equal(shouldEql)
 
     })
-
   })
 })
