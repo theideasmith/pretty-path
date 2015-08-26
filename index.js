@@ -15,12 +15,14 @@ function ensureArray(path){
   } else if(path.constructor === Array) {
     return path
   } else
-    throw new TypeError("Can only switch between string and array, not object")
+    throw new TypeError("Can only switch between" +
+                             " string and array," +
+                                    "not object"  )
 }
 
 function ensureString(path){
   if(path === null || path === undefined)
-    throw new TypeError("cannot ensure type of null path")
+    throw new TypeError("Cannot ensure type of null path")
 
   if (path.constructor === String) return path
   else if(path.constructor === Array) return joinPaths(path)
@@ -31,19 +33,32 @@ function last(arr){
 }
 
 function resolveToRoot(pwd, relative) {
+
+  if (!pwd){
+    throw new Error("Cannot resolve with " +
+                    typeof string +
+                    " root path")
+  }
+
+  if (!relative){
+    throw new Error("Cannot resolve with " +
+                    typeof relative +
+                    " relative path")
+  }
+
   var options = fsDefaults()
   pwd = formatPath(pwd), relative = formatPath(relative)
-
-  //Break paths into an array
-  //so they are easier to work with
-  var relatives = pathToArray(relative)
-  var result = pathToArray(pwd)
 
   if (!isRoot(pwd)) {
     throw new Error("Can only resolve" +
       " from root path and relative path, " +
       " not relative and relative")
   }
+
+  //Break paths into an array
+  //so they are easier to work with
+  var relatives = pathToArray(relative)
+  var result = pathToArray(pwd)
 
   while ( relatives.length > 0 ){
 
@@ -109,6 +124,13 @@ function unAlias(_path, aliases){
 }
 
 function cleanPath(path){
+
+  if (!path){
+    throw new Error("Cannot clean " +
+                    typeof string +
+                    " string")
+  }
+
   var options = fsDefaults()
 
   // var multipleCurrentDir = new RegExp(
@@ -154,7 +176,11 @@ function formatPath(path){
 }
 
 function isRoot( string ){
-
+  if (!string){
+    throw new Error("Cannot check if " +
+                    typeof string +
+                    " string is root")
+  }
   var arr = pathToArray(string)
   return arr[0] === fsDefaults().root
 }
@@ -162,7 +188,11 @@ function isRoot( string ){
 
 
 function pathToArray(_string){
-
+  if (!_string){
+    throw new Error("Cannot break " +
+                    typeof _string +
+                    " string into array")
+  }
   var string = cleanPath(_string)
   var res =  string.split(fsDefaults().delimeter)
 
