@@ -18,8 +18,8 @@ describe('Pretty-path', function() {
 
   var options = {
 
-    current_dir: '.',
-    super_dir: '..',
+    currentdir: '.',
+    superdir: '..',
     delimeter: '/',
     root: '',
     aliases: {
@@ -86,6 +86,14 @@ describe('Pretty-path', function() {
 
     ppath(a).should.equal(root)
     ppath(b).should.equal(root)
+
+  })
+
+  it("should resolve paths correctly", function(){
+
+    ppath.resolve('/x/y/z', '../../').should.equal('/x')
+    ppath.resolve('/x/y/z', '/1/2/3').should.equal('/x/y/z/1/2/3')
+    ppath.resolve('/x/y/z', '/1/2/3/../../../').should.equal('/x/y/z')
 
   })
 })
