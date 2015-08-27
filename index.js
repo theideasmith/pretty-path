@@ -123,6 +123,10 @@ function unAlias(_path, aliases){
   return path
 }
 
+var extraneousCurrdirStartRegex = /^(\.\/){2,}/g
+var extraneousCurrdirRegex = /\/(\.\/){2,}/g
+var extraneousDelimeterRegex = /\/+/g
+
 function cleanPath(path){
 
   if (!path){
@@ -134,12 +138,12 @@ function cleanPath(path){
   var options = fsDefaults()
 
   // var multipleCurrentDir = new RegExp(
-  //   '^(' + options.currdir )
+  //   '^(' + options.currdir +  )
 
   path = ensureString(path)
-        .replace(/^(\.\/){2,}/g, '')
-        .replace(/\/(\.\/){2,}/, '/')  //  "./"
-        .replace(/\/+/g, '/') // "//////" => '/'
+        .replace(extraneousCurrdirStartRegex, '')
+        .replace(extraneousCurrdirRegex, '/')  //  "./"
+        .replace(extraneousDelimeterRegex, '/') // "//////" => '/'
   return path
 }
 
@@ -149,7 +153,7 @@ function formatPath(path){
   path = unAlias(path, options.aliases)
   //If it is root, set up root again in the string
   if (path[0] === options.root)
-    path.unshift(options.delimeter)
+    path.unshift(options.root)
   //If it is not root, and the path has already been aliased,
   //and the path does not contain a './' as in x/y/z
   //not ./x/y/z,
@@ -169,10 +173,8 @@ function formatPath(path){
 
   //Figure out how to determine if the end of the path has a '/'
   //For now, leave that alone and let the user determine that themselves
-  var dirty =  joinPaths( path )
-  //
-  // path = dirty
-  return cleanPath(dirty)
+
+  return cleanPath(joinPaths(path))
 }
 
 function isRoot( string ){
@@ -184,8 +186,6 @@ function isRoot( string ){
   var arr = pathToArray(string)
   return arr[0] === fsDefaults().root
 }
-
-
 
 function pathToArray(_string){
   if (!_string){
