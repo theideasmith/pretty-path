@@ -121,10 +121,12 @@ function joinPaths(_paths){
   var options = fsDefaults()
   var paths = ensureArray(_paths)
   var joined
+
   if((paths[0] === options.root) && (paths.length === 0))
     joined = options.delimeter
   else
     joined = paths.join(options.delimeter)
+
   return cleanPath(joined)
 }
 
@@ -139,8 +141,7 @@ var extraneousCurrdirRegex = /\/(\.\/){2,}/g
 var extraneousDelimeterRegex = /\/+/g
 
 function cleanPath(path){
-
-  if (!path){
+  if (path === null || path === undefined){
     throw new Error("Cannot clean " +
                     typeof string +
                     " string")
@@ -182,7 +183,7 @@ function formatPath(path){
 }
 
 function isRoot( string ){
-  if (!string){
+  if (string ===null || string === undefined){
     throw new Error("Cannot check if " +
                     typeof string +
                     " string is root")
@@ -192,7 +193,7 @@ function isRoot( string ){
 }
 
 function pathToArray(_string){
-  if (!_string){
+  if (_string === null || _string === undefined){
     throw new Error("Cannot break " +
                     typeof _string +
                     " string into array")
