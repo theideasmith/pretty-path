@@ -120,7 +120,11 @@ function alias(path, aliases){
 function joinPaths(_paths){
   var options = fsDefaults()
   var paths = ensureArray(_paths)
-  var joined = paths.join(options.delimeter)
+  var joined
+  if((paths[0] === options.root) && (paths.length === 0))
+    joined = options.delimeter
+  else
+    joined = paths.join(options.delimeter)
   return cleanPath(joined)
 }
 
