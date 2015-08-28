@@ -1,3 +1,8 @@
+if(process.platform ==='win32')
+  throw new Error("Pretty-path does not support " +
+                  "windows at this time. Please submit " +
+                  "an issue to show interest in this feature")
+
 var opts = {}
 
 function options(options){
@@ -33,12 +38,12 @@ function last(arr){
 }
 
 function resolveToRoot(pwd, relative) {
-
-  if (!pwd){
-    throw new Error("Cannot resolve with " +
-                    typeof string +
-                    " root path")
-  }
+  pwd = pwd || fsDefaults().delimeter
+  // if (!pwd){
+  //   throw new Error("Cannot resolve with " +
+  //                   typeof string +
+  //                   " root path")
+  // }
 
   if (!relative){
     throw new Error("Cannot resolve with " +
@@ -71,6 +76,8 @@ function resolveToRoot(pwd, relative) {
         break;
       case options.currdir:
       case '':
+        //Just so that res can be checked
+        //for null and undefined below
         res = last(result)
         break;
       default:
@@ -137,9 +144,6 @@ function cleanPath(path){
 
   var options = fsDefaults()
 
-  // var multipleCurrentDir = new RegExp(
-  //   '^(' + options.currdir +  )
-
   path = ensureString(path)
         .replace(extraneousCurrdirStartRegex, '')
         .replace(extraneousCurrdirRegex, '/')  //  "./"
@@ -166,10 +170,6 @@ function formatPath(path){
   else if (path[0] !== options.currdir ){
     path.unshift(options.currdir)
   }
-
-  // console.log(path)
-
-
 
   //Figure out how to determine if the end of the path has a '/'
   //For now, leave that alone and let the user determine that themselves
