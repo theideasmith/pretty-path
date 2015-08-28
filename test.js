@@ -55,7 +55,7 @@ describe('Pretty-path', function() {
     '.....':'./.....',
     //More results as expexted for
     //other corner cases
-    '..../': './..../',
+    '..../': './....',
     //Checking root resolves to root
     '/': '/',
     //Just as cd does

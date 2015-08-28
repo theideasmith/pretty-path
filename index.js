@@ -101,6 +101,8 @@ function pathToArray(_string){
 
   var res =  string.split(fsDefaults().delimeter)
 
+  if((res.length > 1) && res[res.length-1] === '')
+    res.pop()
   return res
 }
 
