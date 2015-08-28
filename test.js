@@ -101,10 +101,30 @@ describe('Pretty-path', function() {
     })
 
     it("should fail upon receiving relative path as root", function(){
-
       shouldFail(ppath.resolve.bind('x/y/z'))
       shouldFail(ppath.resolve)
-
     })
+  })
+
+  describe("break", function(){
+    var shoulds = {
+      '':[''],
+      '/':[''],
+      'x/y/z': ['x','y','z'],
+      '/x/y/z':['','x','y','z']
+    }
+
+    it("should break paths correctly", function(){
+      Object.keys(shoulds).forEach(function(path) {
+
+        var shouldEql = shoulds[path]
+
+        //This just tests that a passed options doesn't cause any failures
+        var pped = ppath.break(path)
+        console.log("     break ", path, " into ", shouldEql)
+        pped.should.deepEqual(shouldEql)
+      })
+    })
+
   })
 })
